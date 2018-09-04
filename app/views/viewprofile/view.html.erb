@@ -1,0 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<br><br>
+		<div class="row-fluid well text-center">
+				<% if !current_user.image.nil? %>
+			    <div class="span2" >
+			     <%= image_tag @current_user.image.avatar.url(:thumb) , class: "img-circle" %>   
+			    </div>
+		    <% else %>
+			  	<img src="profile-pic.png" class="center" style="width:100px;height:100px;">
+		    <% end %>
+		    <div class="span8">
+		        <h3><%= current_user.name %> </h3>
+		        <h6>Email: <%= current_user.email %> </h6>
+		    </div>
+		</div>
+
+	<h1 class="page-header" style="align-content: center;">Posts</h1>
+		<% if !@posts.empty? %>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">Title</th>
+			      <th scope="col">Created at</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <% @posts.each do |post| %>
+			      <tr>
+			        <td><%= post.title %></td>
+			        <td><%= post.created_at.to_date %></td>       
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+			<br>
+		<% else %>
+			<i> <%= "no post exists.." %> </i>
+		<% end %>
+
+</div>

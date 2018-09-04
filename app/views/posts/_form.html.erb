@@ -1,0 +1,41 @@
+<%= nested_form_for @post, html: { multipart: true } do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</p>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row justify-content-md-center">
+    <div class="field form-group col-md-3">
+    <%= form.label :title , class:"control-label"%>
+    <%= form.text_field :title, class: "form-control" %>
+    </div>
+  </div> 
+
+
+  <div class="row justify-content-md-center">
+    <div class="field form-group col-md-3">
+    <%= form.label :body, class:"control-label" %>
+    <%= form.text_area :body, class: "form-control" %>
+    </div>
+  </div>
+
+
+  <p><i><%= form.link_to_add "Add Image", :images %>  </i> </p>
+  
+
+
+  <%= form.fields_for :images do |task_form| %>
+    <%= task_form.file_field :avatar %>
+    <%= task_form.link_to_remove "Remove this image" %>
+  <% end %>
+
+  <%= form.submit "Create!" , class: 'btn btn-primary'  %>
+
+<% end %>

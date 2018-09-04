@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="page-header container-fluid">
+    <h1>
+	  <strong>Body:</strong>
+	  <%= @comment.body %>
+    </h1>
+
+    <p>
+  <strong>User:</strong>
+  <%= @comment.user.name %>
+</p>
+
+  <p>
+    <strong>Post:</strong>
+    <%= @comment.post.title %>
+  </p>
+
+  </div>
+
+
+
+
+<%= link_to 'Edit', edit_post_comment_path(@post,@comment) %> |
+<%= link_to 'Back', post_comments_path(@post) %>
+</div>

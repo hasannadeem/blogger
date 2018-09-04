@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogger</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'shared/navbar' %>
+    
+    <div class="notice alert-success">
+      <strong><%= notice %></strong>
+    </div>
+    
+    <div class="alert alert-danger">
+      <strong><%= alert %></strong>
+    </div>
+      
+    <%= yield %>
+  </body>
+</html> 

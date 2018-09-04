@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    
+	<table class="table" style=" position: fixed;
+    margin-left: 300px; width: 55%; margin-top: 60px;" >
+	  <thead>
+	    <tr>
+	      <th scope="col" style="width: 40%"> Reported Comments</th>
+	      <th scope="col" style="width: 10%"> Reported By</th>
+	    </tr>
+	  </thead>
+	  <tbody  id='all-reported-comments'>
+	    <% @comments.each do |comment| %>
+	      <tr id='comment-'>
+	        <td> <strong> <%=comment.body %> </strong> </td> 
+					<% @reporters = comment.reporters %>
+	        <td> <%= render 'reporters', reporter: @reporters %> </td> 
+	      </tr>
+	    <%end%>
+	  </tbody>
+	</table>
+	<br>
+</div>

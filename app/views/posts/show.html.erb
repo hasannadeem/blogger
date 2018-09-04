@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+
+    <div class="page-header">
+      <h1>      
+        <strong>Post Title:</strong>   
+        <%= @post.title %>
+      </h1>       
+      <p>
+        Posted by <strong> <i> <%= @post.user.name %> </i> </strong>
+      </p>
+    </div>
+    <% @post.images.each do |image| %>
+      <%= image_tag image.avatar.url(:thumb) if image.avatar.exists? %>      
+    <% end %>
+    <p>
+      Description:
+      <%= @post.body %>
+    </p>
+    <br>
+    <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-primary btn-sm", style: "float: left" if @post.user_id == current_user.id %>
+    <%= link_to 'Like Post', like_post_path(@post), class: "btn btn-success btn-sm", style: "float: left; margin-left: 10px", method: :post if !@post.likers.include?current_user  %>
+    <%= link_to Like.total_likes(@post.id).count.to_s + ' likes' , "#my-modal" , :class => "btn", "data-toggle" => "modal" %>
+  </div>
+
+
+  <!-- The Modal -->
+  <div class="modal fade" data-backdrop="static" tabindex="-1" id="my-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h5 class="modal-title text-center">Likers</h5>
+            <% arr = @post.likers.pluck(:name)  %>
+            <% arr.each do |name| %>            
+            <ul>
+              <li> <%= name %> </li>
+            </ul>
+          <% end %>
+        </div>
+
+        <div class="modal-footer">
+          <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <%= render file: 'comments/index', post: @post, comment: @comments = @post.comments.all %>
+
+  <br><br>
+
+</div>

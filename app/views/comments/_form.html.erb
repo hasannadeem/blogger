@@ -1,0 +1,29 @@
+<div class="container-fluid" >
+  <%= form_for [@comment.post, @comment], remote: true do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+          <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class = "row">   
+      <div class = "col-lg-6">
+        <div class = "input-group">
+
+           <%= form.text_field :body, class:"col-sm-4 form-control" %>
+           <span class = "input-group-btn">
+           <%= form.submit "comment", class:"btn btn-primary"   %>
+           </span>
+           
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+       
+    </div><!-- /.row -->
+  <% end %>
+</div>
